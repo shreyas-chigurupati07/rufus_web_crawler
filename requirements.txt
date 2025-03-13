@@ -1,0 +1,13 @@
+scrapy
+playwright
+beautifulsoup4
+lxml
+langchain
+fastapi
+pydantic
+pymongo
+requests
+aiohttp
+pdfkit
+markdown2
+-e .
