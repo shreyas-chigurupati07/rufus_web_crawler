@@ -29,17 +29,17 @@ Rufus Scraper is an AI-powered web scraping framework designed for automated dat
 *   Structured JSON & CSV outputs
 
 ### 1.2 Key Use Cases
-	•	Automated content retrieval for LLMs
-	•	Building AI-driven chatbots with live data
-	•	Scraping product pricing for market analysis
-	•	Extracting financial or government data for research
-	•	Generating training datasets for NLP models
+-   Automated content retrieval for LLMs
+-   Building AI-driven chatbots with live data
+-   Scraping product pricing for market analysis
+-   Extracting financial or government data for research
+-   Generating training datasets for NLP models
 
 ## 2. Architecture Overview
 
 Rufus Scraper follows a modular architecture comprising multiple layers for scalability, flexibility, and ease of integration.
 
-2.1 System Components
+### 2.1 System Components
 | Module | Description |
 |-----------|----------|
 | Scrapy-based Crawler | Fetches web pages and extracts raw content |
@@ -49,14 +49,14 @@ Rufus Scraper follows a modular architecture comprising multiple layers for scal
 | Dockerized Deployment | Ensures portable and scalable execution |
 
 
-2.2 High-Level System Flow
+### 2.2 High-Level System Flow
 	1.	User submits a URL and query via API
 	2.	Scrapy crawler fetches web content
 	3.	Text is cleaned and filtered using NLP
 	4.	Relevant data is ranked and structured
 	5.	Results are stored in JSON/CSV and served via API
 
-2.3 Technology Stack
+### 2.3 Technology Stack
 	•	Python 3.10+
 	•	Scrapy (Web crawling)
 	•	BeautifulSoup4 (HTML Parsing)
@@ -66,42 +66,43 @@ Rufus Scraper follows a modular architecture comprising multiple layers for scal
 	•	Docker (Containerized execution)
 
 
-3. Installation Guide
+## 3. Installation Guide
 
-3.1 Prerequisites
+### 3.1 Prerequisites
 
 Ensure you have the following installed:
-	•	Python 3.10+
-	•	pip package manager
-	•	Docker (Optional for containerized deployment)
+*   Python 3.10+
+*   pip package manager
+*   Docker (Optional for containerized deployment)
 
-3.2 Setup Steps
+### 3.2 Setup Steps
 
-Step 1: Clone the Repository
+- Step 1: Clone the Repository
 ```bash
 git clone [your-repo-link]
 cd rufus_scraper
 ```
 
 
-Step 2: Create a Virtual Environment
+- Step 2: Create a Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # (Linux/macOS)
 venv\Scripts\activate     # (Windows)
 ```
 
-Step 3: Install Dependencies
+- Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-Step 4: Start the API Server
+- Step 4: Start the API Server
 ```bash
 uvicorn rufus_api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-API Docs Available at: http://127.0.0.1:8000/docs
+- API Docs Available at: http://127.0.0.1:8000/docs
+
 
 
 4. API Reference
