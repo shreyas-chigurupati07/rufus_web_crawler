@@ -10,4 +10,10 @@ requests
 aiohttp
 pdfkit
 markdown2
+pandas
+scrapy-playwright
+openai
+sentence-transformers
+faiss-cpu
+uvicorn
 -e .
