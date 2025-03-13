@@ -204,7 +204,7 @@ Please refer to the File at: src/rufus_nlp.py
 	    * Langchain RecursiveCharacterTextSplitter
 
 
-### 6.3 Data Storage Formats
+## 7. Data Storage Formats
 
 Rufus stores extracted data in multiple formats to support flexible integration into RAG pipelines and external applications.
 
@@ -216,12 +216,12 @@ Rufus stores extracted data in multiple formats to support flexible integration 
 Please refer to the File at: src/rufus_formatter.py
 
 
-## 7. RAG Pipeline Integration
+## 8. RAG Pipeline Integration
 
 Rufus is designed for Retrieval-Augmented Generation (RAG) systems, making it seamlessly compatible with LLM-based applications.
 
 
-### 7.1 Steps to Integrate Rufus in RAG
+### 8.1 Steps to Integrate Rufus in RAG
 1.	Crawl & Extract Data:
     - Rufus scrapes content from a target website.
 2.	Process & Filter Text:
@@ -231,7 +231,7 @@ Rufus is designed for Retrieval-Augmented Generation (RAG) systems, making it se
 4.	Retrieve and Generate Responses:
     - When queried, embeddings are matched to the most relevant content, and responses are generated using LLMs (GPT, Claude, Gemini, etc.).
 
-### 7.2 Example RAG Flow Using Rufus + FAISS
+### 8.2 Example RAG Flow Using Rufus + FAISS
 - Extract Data → Convert to Embeddings → Store in FAISS → Query for Contextual Retrieval
 - This setup enhances LLM accuracy by grounding responses in relevant, real-world data.
 
