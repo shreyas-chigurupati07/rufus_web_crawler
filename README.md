@@ -74,11 +74,11 @@ curl -X 'GET' 'http://127.0.0.1:8000/download/csv'
 ## Running with Docker
 1. Build the Docker image
 ```bash
-docker build -t rufus_scraper .
+docker build -t rufus_web_crawler .
 ```
 2. Run the Docker Container
 ```bash
-docker run -p 8000:8000 rufus_scraper
+docker run -p 8000:8000 rufus_web_crawler
 ```
 3. Check API Docs
 Go to: http://127.0.0.1:8000/docs
