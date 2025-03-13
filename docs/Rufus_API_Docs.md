@@ -244,3 +244,74 @@ Rufus is designed for Retrieval-Augmented Generation (RAG) systems, making it se
     * FAISS, ChromaDB for retrieval
     * LangChain for LLM integration
     * OpenAI API or Hugging Face Transformers for response generation
+
+
+
+## 9. Docker Deployment
+
+### 9.1 Overview
+Rufus can be containerized using Docker to simplify deployment and ensure consistency across different environments. The Docker setup includes the application code, dependencies, and configuration required to run the FastAPI server with the web crawler and NLP functionalities.
+
+### 9.2 Dockerfile
+The `Dockerfile` defines how the Rufus application is containerized. Below is the structure of the `Dockerfile`:
+
+```dockerfile
+    FROM python:3.10
+
+    WORKDIR /app
+
+    COPY . /app
+
+    # Install dependencies
+    RUN pip install --no-cache-dir -r requirements.txt
+
+    EXPOSE 8000
+
+    # Run server
+    CMD ["uvicorn", "test-api:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+```
+
+### 9.3 Building the Docker Image
+To build the Docker image, navigate to the project directory and run the following command:
+
+```sh
+docker build -t rufus-web-crawler .
+```
+
+This will create a Docker image named `rufus-web-crawler` with all dependencies installed.
+
+### 9.4 Running the Docker Container
+Once the image is built, you can run the container using:
+
+```sh
+docker run -p 8000:8000 rufus-web-crawler
+```
+
+This will start the FastAPI server inside the container, making it accessible on `http://localhost:8000`.
+
+### 9.5 Stopping the Container
+To stop the running container, use:
+
+```sh
+docker ps
+```
+
+Find the container ID and stop it with:
+
+```sh
+docker stop <container_id>
+```
+
+Alternatively, if running in detached mode, use:
+
+```sh
+docker run -d -p 8000:8000 rufus-web-crawler
+```
+
+and stop it with:
+
+```sh
+docker stop $(docker ps -q --filter ancestor=rufus-web-crawler)
+```
+
+
