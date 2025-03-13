@@ -57,13 +57,13 @@ Rufus Scraper follows a modular architecture comprising multiple layers for scal
 	5.	Results are stored in JSON/CSV and served via API
 
 ### 2.3 Technology Stack
-	•	Python 3.10+
-	•	Scrapy (Web crawling)
-	•	BeautifulSoup4 (HTML Parsing)
-	•	FastAPI (REST API)
-	•	Sentence-Transformers (NLP)
-	•	FAISS (Optional - vector search)
-	•	Docker (Containerized execution)
+-	Python 3.10+
+-	Scrapy (Web crawling)
+-	BeautifulSoup4 (HTML Parsing)
+-	FastAPI (REST API)
+-	Sentence-Transformers (NLP)
+-	FAISS (Optional - vector search)
+-	Docker (Containerized execution)
 
 
 ## 3. Installation Guide
@@ -103,27 +103,27 @@ uvicorn rufus_api:app --host 0.0.0.0 --port 8000 --reload
 
 - API Docs Available at: http://127.0.0.1:8000/docs
 
+---
 
-
-4. API Reference
+## 4. API Reference
 
 Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. Below are the available endpoints and their descriptions.
 
-4.1 Base URL: http://127.0.0.1:8000/
+### 4.1 Base URL: http://127.0.0.1:8000/
 
-4.2 Endpoints
+### 4.2 Endpoints
 
-4.2.1 Scrape a Website
-	•	Endpoint: POST /scrape/
-	•	Description: Crawls the specified website, extracts relevant text, and ranks content based on query relevance.
-	•	Request Body:
+#### 4.2.1 Scrape a Website
+-	Endpoint: POST /scrape/
+-	Description: Crawls the specified website, extracts relevant text, and ranks content based on query relevance.
+-	Request Body:
         ```json
         {
             "url": "https://example.com",
             "query": "AI advancements"
         }
         ```
-    •	Response:
+-	Response:
         ```json
         {
             "message": "Scraping completed!",
@@ -136,16 +136,16 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
             ]
         }
 
-4.2.2 Download Extracted Data
-	•	Endpoint: GET /download/{file_type}/
-	•	Description: Allows downloading scraped data in JSON or CSV format.
-	•	Parameters:
-	•	file_type: (json or csv)
-	•	Example Request:
+#### 4.2.2 Download Extracted Data
+-	Endpoint: GET /download/{file_type}/
+-	Description: Allows downloading scraped data in JSON or CSV format.
+-	Parameters:
+-	file_type: (json or csv)
+-	Example Request:
         ```bash
         curl -X 'GET' 'http://127.0.0.1:8000/download/json'
         ```
-    •	Response:
+-	Response:
         ```json
         {
             "message": "Download JSON file at output.json"
@@ -153,7 +153,7 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
         ```
 
 
-5. Scraper Design
+## 5. Scraper Design
 
 5.1 Scrapy Spider Architecture
 
