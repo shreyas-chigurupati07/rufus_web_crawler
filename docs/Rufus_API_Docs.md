@@ -50,11 +50,11 @@ Rufus Scraper follows a modular architecture comprising multiple layers for scal
 
 
 ### 2.2 High-Level System Flow
-	1.	User submits a URL and query via API
-	2.	Scrapy crawler fetches web content
-	3.	Text is cleaned and filtered using NLP
-	4.	Relevant data is ranked and structured
-	5.	Results are stored in JSON/CSV and served via API
+1.	User submits a URL and query via API
+2.	Scrapy crawler fetches web content
+3.	Text is cleaned and filtered using NLP
+4.	Relevant data is ranked and structured
+5.	Results are stored in JSON/CSV and served via API
 
 ### 2.3 Technology Stack
 -	Python 3.10+
@@ -77,44 +77,46 @@ Ensure you have the following installed:
 
 ### 3.2 Setup Steps
 
-- Step 1: Clone the Repository
+Step 1: Clone the Repository
 ```bash
-git clone [your-repo-link]
-cd rufus_scraper
+git clone https://github.com/shreyas-chigurupati07/rufus_web_crawler.git
+cd rufus_web_crawler
 ```
 
 
-- Step 2: Create a Virtual Environment
+Step 2: Create a Virtual Environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # (Linux/macOS)
 venv\Scripts\activate     # (Windows)
 ```
 
-- Step 3: Install Dependencies
+Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-- Step 4: Start the API Server
+Step 4: Start the API Server
 ```bash
 uvicorn rufus_api:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 - API Docs Available at: http://127.0.0.1:8000/docs
 
----
 
 ## 4. API Reference
 
 Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. Below are the available endpoints and their descriptions.
 
-### 4.1 Base URL: http://127.0.0.1:8000/
+### 4.1 Base URL:
+```bash
+http://127.0.0.1:8000/
+```
 
 ### 4.2 Endpoints
 
 #### 4.2.1 Scrape a Website
--	Endpoint: POST /scrape/
+-	Endpoint:POST /scrape/
 -	Description: Crawls the specified website, extracts relevant text, and ranks content based on query relevance.
 -	Request Body:
     ```json
@@ -141,7 +143,7 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
 -	Endpoint: GET /download/{file_type}/
 -	Description: Allows downloading scraped data in JSON or CSV format.
 -	Parameters:
--	file_type: (json or csv)
+    - file_type: (json or csv)
 -	Example Request:
     ```bash
         curl -X 'GET' 'http://127.0.0.1:8000/download/json'
@@ -162,7 +164,7 @@ The Rufus Scraper is built using Scrapy, a powerful Python framework for web cra
 
 | Component | Purpose |
 |-----------|----------|
-| RufusSpider | Main crawling class extending Scrapyâ€™s Spider class |
+| RufusSpider | Main crawling class extending Scrapy's Spider class |
 | clean_text() | Removes unnecessary content, formats text |
 | parse() | Extracts structured data from web pages |
 | clean_links() | Normalizes and filters links before following them |
@@ -218,19 +220,16 @@ Please refer to the File at: src/rufus_formatter.py
 
 Rufus is designed for Retrieval-Augmented Generation (RAG) systems, making it seamlessly compatible with LLM-based applications.
 
-⸻
 
 ### 7.1 Steps to Integrate Rufus in RAG
-1.	Crawl & Extract Data
+1.	Crawl & Extract Data:
     - Rufus scrapes content from a target website.
-2.	Process & Filter Text
+2.	Process & Filter Text:
     - The NLP pipeline cleans and ranks relevant content.
-3.	Store in a Vector Database
+3.	Store in a Vector Database:
     - Rufus outputs data in JSON format, which can be indexed in FAISS, Chroma, Weaviate, etc.
-4.	Retrieve and Generate Responses
+4.	Retrieve and Generate Responses:
     - When queried, embeddings are matched to the most relevant content, and responses are generated using LLMs (GPT, Claude, Gemini, etc.).
-
-⸻
 
 ### 7.2 Example RAG Flow Using Rufus + FAISS
 - Extract Data → Convert to Embeddings → Store in FAISS → Query for Contextual Retrieval
