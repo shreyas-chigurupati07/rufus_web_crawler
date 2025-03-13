@@ -1,7 +1,7 @@
 # **Rufus Web Scraper Documentation**
 
-Version: 1.0
-Last Updated: March 2025
+Version: 1.0  
+Last Updated: March 2025  
 Author: Shreyas Chigurupati
 
 
