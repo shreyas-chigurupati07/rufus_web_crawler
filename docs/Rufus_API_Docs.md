@@ -87,3 +87,175 @@ API Docs Available at: http://127.0.0.1:8000/docs
 4. API Reference
 
 Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. Below are the available endpoints and their descriptions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# **NLP Project: Sentiment Analysis Using DistilBERT**
+
+A deep learning-based sentiment analysis tool that classifies text as **positive, negative, or neutral** using a fine-tuned **DistilBERT model**.
+
+## **1. Overview**
+
+This project leverages **Transformers and NLP techniques** to classify text sentiment. It supports **real-time inference** via an API and can be deployed using **FastAPI**.
+
+## **2. Installation**
+
+### **Prerequisites**
+
+- Python 3.8+
+- Pip or Conda
+- Virtual environment (recommended)
+
+### **Setup**
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/username/nlp-sentiment-analysis.git
+cd nlp-sentiment-analysis
+pip install -r requirements.txt
+```
+
+For Conda users:
+
+```bash
+conda create -n nlp_project python=3.9
+conda activate nlp_project
+pip install -r requirements.txt
+```
+
+## **3. Dataset**
+
+- **Source**: IMDb movie reviews dataset.
+- **Size**: 50,000 labeled reviews.
+- **Preprocessing**: Tokenization, stopword removal, lowercasing.
+
+Example:
+
+```json
+{
+  "review": "The movie was absolutely fantastic!",
+  "label": "positive"
+}
+```
+
+## **4. Model Architecture**
+
+The model uses **DistilBERT**, a lightweight transformer model optimized for **text classification**.
+
+- **Tokenizer**: `transformers.DistilBertTokenizer`
+- **Model**: `DistilBertForSequenceClassification`
+- **Fine-tuned on**: IMDb dataset
+
+### **Pipeline**
+
+1. Preprocess text (cleaning, tokenization)
+2. Pass through DistilBERT
+3. Get classification output (Positive/Negative/Neutral)
+
+## **5. Training & Evaluation**
+
+### **Training**
+
+```bash
+python train.py --epochs 5 --batch_size 32 --lr 2e-5
+```
+
+- Optimizer: **AdamW**
+- Loss function: **CrossEntropyLoss**
+- Evaluation metric: **Accuracy, F1-score**
+
+### **Results**
+
+| Model      | Accuracy | F1-Score |
+| ---------- | -------- | -------- |
+| DistilBERT | 89%      | 92%      |
+
+## **6. How to Use**
+
+### **Command Line**
+
+```bash
+python predict.py --text "I love this movie!"
+# Output: Positive
+```
+
+### **Python API**
+
+```python
+from model import predict_sentiment
+
+text = "The product was terrible."
+print(predict_sentiment(text))  # Output: "Negative"
+```
+
+## **7. Deployment**
+
+### **Run Locally**
+
+```bash
+uvicorn app:app --host 0.0.0.0 --port 8000
+```
+
+### **API Endpoints**
+
+- **POST **``: Send text input and receive sentiment prediction.
+
+Example:
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"text": "Great experience!"}'
+```
+
+Response:
+
+```json
+{
+  "sentiment": "Positive"
+}
+```
+
+### **Docker Deployment**
+
+```bash
+docker build -t nlp-sentiment .
+docker run -p 8000:8000 nlp-sentiment
+```
+
+## **8. Performance Monitoring**
+
+- Logs are saved in `logs/`
+- Track training using **TensorBoard**:
+  ```bash
+  tensorboard --logdir=runs/
+  ```
+
+## **9. Future Improvements**
+
+- Improve accuracy by using **RoBERTa or GPT-based models**.
+- Add **real-time analytics** using Prometheus.
+- Implement **active learning** for continuous model improvement.
+
+## **10. Contributors & References**
+
+- **Author**: [Your Name](https://github.com/username)
+- **Dataset**: IMDb Movie Reviews
+- **Libraries**: Hugging Face Transformers, FastAPI, PyTorch
+
+---
+
+**🔹 Star this repo if you find it useful! 🚀**
+
