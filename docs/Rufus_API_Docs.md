@@ -103,159 +103,128 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
 
 
 
-# **NLP Project: Sentiment Analysis Using DistilBERT**
+# **Rufus Web Scraper Documentation**
 
-A deep learning-based sentiment analysis tool that classifies text as **positive, negative, or neutral** using a fine-tuned **DistilBERT model**.
-
-## **1. Overview**
-
-This project leverages **Transformers and NLP techniques** to classify text sentiment. It supports **real-time inference** via an API and can be deployed using **FastAPI**.
-
-## **2. Installation**
-
-### **Prerequisites**
-
-- Python 3.8+
-- Pip or Conda
-- Virtual environment (recommended)
-
-### **Setup**
-
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/username/nlp-sentiment-analysis.git
-cd nlp-sentiment-analysis
-pip install -r requirements.txt
-```
-
-For Conda users:
-
-```bash
-conda create -n nlp_project python=3.9
-conda activate nlp_project
-pip install -r requirements.txt
-```
-
-## **3. Dataset**
-
-- **Source**: IMDb movie reviews dataset.
-- **Size**: 50,000 labeled reviews.
-- **Preprocessing**: Tokenization, stopword removal, lowercasing.
-
-Example:
-
-```json
-{
-  "review": "The movie was absolutely fantastic!",
-  "label": "positive"
-}
-```
-
-## **4. Model Architecture**
-
-The model uses **DistilBERT**, a lightweight transformer model optimized for **text classification**.
-
-- **Tokenizer**: `transformers.DistilBertTokenizer`
-- **Model**: `DistilBertForSequenceClassification`
-- **Fine-tuned on**: IMDb dataset
-
-### **Pipeline**
-
-1. Preprocess text (cleaning, tokenization)
-2. Pass through DistilBERT
-3. Get classification output (Positive/Negative/Neutral)
-
-## **5. Training & Evaluation**
-
-### **Training**
-
-```bash
-python train.py --epochs 5 --batch_size 32 --lr 2e-5
-```
-
-- Optimizer: **AdamW**
-- Loss function: **CrossEntropyLoss**
-- Evaluation metric: **Accuracy, F1-score**
-
-### **Results**
-
-| Model      | Accuracy | F1-Score |
-| ---------- | -------- | -------- |
-| DistilBERT | 89%      | 92%      |
-
-## **6. How to Use**
-
-### **Command Line**
-
-```bash
-python predict.py --text "I love this movie!"
-# Output: Positive
-```
-
-### **Python API**
-
-```python
-from model import predict_sentiment
-
-text = "The product was terrible."
-print(predict_sentiment(text))  # Output: "Negative"
-```
-
-## **7. Deployment**
-
-### **Run Locally**
-
-```bash
-uvicorn app:app --host 0.0.0.0 --port 8000
-```
-
-### **API Endpoints**
-
-- **POST **``: Send text input and receive sentiment prediction.
-
-Example:
-
-```bash
-curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"text": "Great experience!"}'
-```
-
-Response:
-
-```json
-{
-  "sentiment": "Positive"
-}
-```
-
-### **Docker Deployment**
-
-```bash
-docker build -t nlp-sentiment .
-docker run -p 8000:8000 nlp-sentiment
-```
-
-## **8. Performance Monitoring**
-
-- Logs are saved in `logs/`
-- Track training using **TensorBoard**:
-  ```bash
-  tensorboard --logdir=runs/
-  ```
-
-## **9. Future Improvements**
-
-- Improve accuracy by using **RoBERTa or GPT-based models**.
-- Add **real-time analytics** using Prometheus.
-- Implement **active learning** for continuous model improvement.
-
-## **10. Contributors & References**
-
-- **Author**: [Your Name](https://github.com/username)
-- **Dataset**: IMDb Movie Reviews
-- **Libraries**: Hugging Face Transformers, FastAPI, PyTorch
+## **📌 Overview**
+Rufus is an advanced web scraping framework designed to extract structured data from websites. It is built with **Scrapy** for efficient crawling and **FastAPI** to provide a RESTful API for managing scraping requests. The extracted content can be processed, filtered, and saved in **JSON** or **CSV** formats, making it ideal for **Retrieval-Augmented Generation (RAG) pipelines**.
 
 ---
+## **🛠️ Features**
+- **Fast & Scalable Web Crawling** using **Scrapy**
+- **NLP Processing & Filtering** with **SentenceTransformers**
+- **REST API for Scraping** using **FastAPI**
+- **Storage Options:** JSON & CSV
+- **Docker Support** for easy deployment
+- **Customizable Query-Based Content Extraction**
+- **Error Handling & Logging**
 
-**🔹 Star this repo if you find it useful! 🚀**
+---
+## **📂 Project Structure**
+```
+rufus_web_crawler/
+│── src/
+│   ├── rufus_crawler.py        # Web Scraping Logic (Scrapy Spider)
+│   ├── rufus_nlp.py            # NLP-based Text Processing & Ranking
+│   ├── rufus_formatter.py      # Data Formatting (JSON, CSV)
+│── scripts/
+│   ├── run_spider.py           # Script to Execute Scraper
+│── tests/
+│   ├── test_api.py             # API Testing
+│── rufus_api.py                # FastAPI Application
+│── Dockerfile                   # Docker Containerization
+│── requirements.txt             # Dependencies
+│── README.md                    # Project Guide
+```
+
+---
+## **🚀 Installation**
+### **1️⃣ Clone the Repository**
+```sh
+git clone https://github.com/your-repo/rufus_web_crawler.git
+cd rufus_web_crawler
+```
+
+### **2️⃣ Install Dependencies**
+```sh
+pip install -r requirements.txt
+```
+
+### **3️⃣ Run FastAPI Server**
+```sh
+uvicorn rufus_api:app --host 0.0.0.0 --port 8000 --reload
+```
+
+---
+## **📡 API Endpoints**
+
+### **1️⃣ Web Scraping Request**
+**Endpoint:** `/scrape/` (POST)
+```json
+{
+  "url": "https://example.com",
+  "query": "latest tech news"
+}
+```
+**Response:**
+```json
+{
+  "message": "Scraping completed!",
+  "data": [
+    {
+      "url": "https://example.com/article1",
+      "title": "Sample Article",
+      "text": ["Extracted content here..."]
+    }
+  ]
+}
+```
+
+### **2️⃣ Download Extracted Data**
+**JSON:** `/download/json` (GET)
+**CSV:** `/download/csv` (GET)
+
+---
+## **🐳 Running with Docker**
+### **1️⃣ Build the Docker Image**
+```sh
+docker build -t rufus-web-crawler .
+```
+
+### **2️⃣ Run the Container**
+```sh
+docker run -p 8000:8000 rufus-web-crawler
+```
+
+### **3️⃣ Test the API**
+```sh
+curl -X 'POST' 'http://127.0.0.1:8000/scrape/' -H 'Content-Type: application/json' -d '{"url": "https://example.com", "query": "sample query"}'
+```
+
+---
+## **📑 How Rufus Works in a RAG Pipeline**
+1. **Scrape** raw content from the target website.
+2. **Process & Filter** relevant text based on the given query.
+3. **Generate embeddings** using **SentenceTransformers**.
+4. **Store embeddings** in a vector database like **FAISS**.
+5. **Retrieve & Rank** relevant text chunks for downstream applications.
+
+---
+## **📌 Challenges & Solutions**
+| Challenge | Solution |
+|-----------|----------|
+| JavaScript-heavy pages | Used Playwright for rendering |
+| Extracting meaningful content | Used **NLP-based ranking** & filtering |
+| Preventing duplicate links | Implemented URL normalization & deduplication |
+| Handling pagination | Followed structured pagination rules |
+
+---
+## **📜 License**
+Rufus is open-source under the **MIT License**.
+
+---
+## **📞 Support & Contribution**
+- **GitHub Issues:** Report bugs or request features.
+- **Pull Requests:** Contributions are welcome!
+- **Contact:** Reach out via email or GitHub discussions.
+
 
