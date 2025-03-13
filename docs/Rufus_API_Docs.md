@@ -117,14 +117,14 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
 -	Endpoint: POST /scrape/
 -	Description: Crawls the specified website, extracts relevant text, and ranks content based on query relevance.
 -	Request Body:
-        ```json
+    ```json
         {
             "url": "https://example.com",
             "query": "AI advancements"
         }
-        ```
+    ```
 -	Response:
-        ```json
+    ```json
         {
             "message": "Scraping completed!",
             "data": [
@@ -135,6 +135,7 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
                 }
             ]
         }
+    ```
 
 #### 4.2.2 Download Extracted Data
 -	Endpoint: GET /download/{file_type}/
@@ -142,20 +143,20 @@ Rufus Scraper exposes a FastAPI-based RESTful API to interact with the system. B
 -	Parameters:
 -	file_type: (json or csv)
 -	Example Request:
-        ```bash
+    ```bash
         curl -X 'GET' 'http://127.0.0.1:8000/download/json'
-        ```
+    ```
 -	Response:
-        ```json
+    ```json
         {
             "message": "Download JSON file at output.json"
         }
-        ```
+    ```
 
 
 ## 5. Scraper Design
 
-5.1 Scrapy Spider Architecture
+### 5.1 Scrapy Spider Architecture
 
 The Rufus Scraper is built using Scrapy, a powerful Python framework for web crawling.
 
@@ -167,17 +168,17 @@ The Rufus Scraper is built using Scrapy, a powerful Python framework for web cra
 | clean_links() | Normalizes and filters links before following them |
 | errback() | Handles failed requests gracefully |
 
-5.2 Scrapy Spider Code
+### 5.2 Scrapy Spider Code
 
 Please refer to the File at: src/rufus_crawler.py
 
 
 
-6. NLP Processing & Data Storage
+## 6. NLP Processing & Data Storage
 
 Rufus Scraper integrates Natural Language Processing (NLP) techniques to refine extracted text and make it query-relevant.
 
-6.1 NLP Pipeline Overview
+### 6.1 NLP Pipeline Overview
 
 The NLP pipeline ensures that only relevant and meaningful content is retained.
 
@@ -191,17 +192,17 @@ The NLP pipeline ensures that only relevant and meaningful content is retained.
 Please refer to the File at: src/rufus_nlp.py
 
 
-6.2 Embedding & Ranking
-	•	Text embeddings are generated using all-MiniLM-L6-v2, a SentenceTransformer model optimized for semantic search.
-	•	Query-based cosine similarity is used to rank the most relevant content.
+### 6.2 Embedding & Ranking
+-	Text embeddings are generated using all-MiniLM-L6-v2, a SentenceTransformer model optimized for semantic search.
+-	Query-based cosine similarity is used to rank the most relevant content.
 
- Tech Stack:
-	•	SentenceTransformers
-	•	FAISS (for fast similarity search)
-	•	Langchain RecursiveCharacterTextSplitter
+    - Tech Stack:
+	    * SentenceTransformers
+	    * FAISS (for fast similarity search)
+	    * Langchain RecursiveCharacterTextSplitter
 
 
-6.3 Data Storage Formats
+### 6.3 Data Storage Formats
 
 Rufus stores extracted data in multiple formats to support flexible integration into RAG pipelines and external applications.
 
@@ -213,167 +214,34 @@ Rufus stores extracted data in multiple formats to support flexible integration 
 Please refer to the File at: src/rufus_formatter.py
 
 
-7. RAG Pipeline Integration
+## 7. RAG Pipeline Integration
 
 Rufus is designed for Retrieval-Augmented Generation (RAG) systems, making it seamlessly compatible with LLM-based applications.
 
 ⸻
 
-7.1 Steps to Integrate Rufus in RAG
-	1.	Crawl & Extract Data
-	•	Rufus scrapes content from a target website.
-	2.	Process & Filter Text
-	•	The NLP pipeline cleans and ranks relevant content.
-	3.	Store in a Vector Database
-	•	Rufus outputs data in JSON format, which can be indexed in FAISS, Chroma, Weaviate, etc.
-	4.	Retrieve and Generate Responses
-	•	When queried, embeddings are matched to the most relevant content, and responses are generated using LLMs (GPT, Claude, Gemini, etc.).
+### 7.1 Steps to Integrate Rufus in RAG
+1.	Crawl & Extract Data
+    - Rufus scrapes content from a target website.
+2.	Process & Filter Text
+    - The NLP pipeline cleans and ranks relevant content.
+3.	Store in a Vector Database
+    - Rufus outputs data in JSON format, which can be indexed in FAISS, Chroma, Weaviate, etc.
+4.	Retrieve and Generate Responses
+    - When queried, embeddings are matched to the most relevant content, and responses are generated using LLMs (GPT, Claude, Gemini, etc.).
 
 ⸻
 
-7.2 Example RAG Flow Using Rufus + FAISS
-	•	Extract Data → Convert to Embeddings → Store in FAISS → Query for Contextual Retrieval
-	•	This setup enhances LLM accuracy by grounding responses in relevant, real-world data.
+### 7.2 Example RAG Flow Using Rufus + FAISS
+- Extract Data → Convert to Embeddings → Store in FAISS → Query for Contextual Retrieval
+- This setup enhances LLM accuracy by grounding responses in relevant, real-world data.
 
- Integration Guide:
+- Integration Guide:
 	1.	Run rufus_api.py to extract text.
 	2.	Load JSON output into a vector store.
 	3.	Use LLMs to generate informed responses.
 
- Recommended Stack:
-	•	FAISS, ChromaDB for retrieval
-	•	LangChain for LLM integration
-	•	OpenAI API or Hugging Face Transformers for response generation
-
-
-
-
-
-
-
-
-# **Rufus Web Scraper Documentation**
-
-## **📌 Overview**
-Rufus is an advanced web scraping framework designed to extract structured data from websites. It is built with **Scrapy** for efficient crawling and **FastAPI** to provide a RESTful API for managing scraping requests. The extracted content can be processed, filtered, and saved in **JSON** or **CSV** formats, making it ideal for **Retrieval-Augmented Generation (RAG) pipelines**.
-
----
-## **🛠️ Features**
-- **Fast & Scalable Web Crawling** using **Scrapy**
-- **NLP Processing & Filtering** with **SentenceTransformers**
-- **REST API for Scraping** using **FastAPI**
-- **Storage Options:** JSON & CSV
-- **Docker Support** for easy deployment
-- **Customizable Query-Based Content Extraction**
-- **Error Handling & Logging**
-
----
-## **📂 Project Structure**
-```
-rufus_web_crawler/
-│── src/
-│   ├── rufus_crawler.py        # Web Scraping Logic (Scrapy Spider)
-│   ├── rufus_nlp.py            # NLP-based Text Processing & Ranking
-│   ├── rufus_formatter.py      # Data Formatting (JSON, CSV)
-│── scripts/
-│   ├── run_spider.py           # Script to Execute Scraper
-│── tests/
-│   ├── test_api.py             # API Testing
-│── rufus_api.py                # FastAPI Application
-│── Dockerfile                   # Docker Containerization
-│── requirements.txt             # Dependencies
-│── README.md                    # Project Guide
-```
-
----
-## **🚀 Installation**
-### **1️⃣ Clone the Repository**
-```sh
-git clone https://github.com/your-repo/rufus_web_crawler.git
-cd rufus_web_crawler
-```
-
-### **2️⃣ Install Dependencies**
-```sh
-pip install -r requirements.txt
-```
-
-### **3️⃣ Run FastAPI Server**
-```sh
-uvicorn rufus_api:app --host 0.0.0.0 --port 8000 --reload
-```
-
----
-## **📡 API Endpoints**
-
-### **1️⃣ Web Scraping Request**
-**Endpoint:** `/scrape/` (POST)
-```json
-{
-  "url": "https://example.com",
-  "query": "latest tech news"
-}
-```
-**Response:**
-```json
-{
-  "message": "Scraping completed!",
-  "data": [
-    {
-      "url": "https://example.com/article1",
-      "title": "Sample Article",
-      "text": ["Extracted content here..."]
-    }
-  ]
-}
-```
-
-### **2️⃣ Download Extracted Data**
-**JSON:** `/download/json` (GET)
-**CSV:** `/download/csv` (GET)
-
----
-## **🐳 Running with Docker**
-### **1️⃣ Build the Docker Image**
-```sh
-docker build -t rufus-web-crawler .
-```
-
-### **2️⃣ Run the Container**
-```sh
-docker run -p 8000:8000 rufus-web-crawler
-```
-
-### **3️⃣ Test the API**
-```sh
-curl -X 'POST' 'http://127.0.0.1:8000/scrape/' -H 'Content-Type: application/json' -d '{"url": "https://example.com", "query": "sample query"}'
-```
-
----
-## **📑 How Rufus Works in a RAG Pipeline**
-1. **Scrape** raw content from the target website.
-2. **Process & Filter** relevant text based on the given query.
-3. **Generate embeddings** using **SentenceTransformers**.
-4. **Store embeddings** in a vector database like **FAISS**.
-5. **Retrieve & Rank** relevant text chunks for downstream applications.
-
----
-## **📌 Challenges & Solutions**
-| Challenge | Solution |
-|-----------|----------|
-| JavaScript-heavy pages | Used Playwright for rendering |
-| Extracting meaningful content | Used **NLP-based ranking** & filtering |
-| Preventing duplicate links | Implemented URL normalization & deduplication |
-| Handling pagination | Followed structured pagination rules |
-
----
-## **📜 License**
-Rufus is open-source under the **MIT License**.
-
----
-## **📞 Support & Contribution**
-- **GitHub Issues:** Report bugs or request features.
-- **Pull Requests:** Contributions are welcome!
-- **Contact:** Reach out via email or GitHub discussions.
-
-
+- Recommended Stack:
+    * FAISS, ChromaDB for retrieval
+    * LangChain for LLM integration
+    * OpenAI API or Hugging Face Transformers for response generation
