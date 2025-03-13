@@ -61,12 +61,25 @@ print(response.json())
 ```
 
 ## Download Scraped Data
-JSON Format:
+### JSON Format:
 ```bash
 curl -X 'GET' 'http://127.0.0.1:8000/download/json'
 ```
 
-CSV Format:
+### CSV Format:
 ```bash
 curl -X 'GET' 'http://127.0.0.1:8000/download/csv'
 ```
+
+## Running with Docker
+1. Build the Docker image
+```bash
+docker build -t rufus_scraper .
+```
+2. Run the Docker Container
+```bash
+docker run -p 8000:8000 rufus_scraper
+```
+3. Check API Docs
+Go to: http://127.0.0.1:8000/docs
+   
