@@ -1,4 +1,4 @@
-# Rufus Scraper: AI-Powered Web Scraping & RAG Integration
+# Rufus Scraper: AI Agent for Web Scraping & RAG Integration
 
 Rufus is an advanced web scraping tool designed for retrieving, filtering, and ranking relevant web content. It integrates with retrieval-augmented generation (RAG) pipelines, making it ideal for AI-driven applications.
 
