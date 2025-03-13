@@ -10,7 +10,7 @@ def save_as_json(data, filename="output.json"):
 
 def save_as_csv(data, filename="output.csv"):
     if not data:
-        print("⚠ No data to save!")
+        print("No data to save!")
         return
     df = pd.DataFrame(data)
     df.to_csv(filename, index=False, encoding="utf-8")

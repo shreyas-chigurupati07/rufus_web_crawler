@@ -3,22 +3,6 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# from scrapy.crawler import CrawlerProcess
-# from src.rufus_crawler import RufusSpider
-
-# def run_spider(start_url):
-#     domain = start_url.split("//")[1].split("/")[0]
-#     process = CrawlerProcess()
-#     process.crawl(RufusSpider, start_url=start_url, allowed_domains=[domain])
-#     process.start()
-
-# if __name__ == "__main__":
-#     #start_url = "https://example.com"  # Change this to any URL
-#     start_url = "https://news.ycombinator.com/"
-#     run_spider(start_url)
-
-import sys
-import os
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 from src.rufus_crawler import RufusSpider
@@ -27,7 +11,6 @@ from scrapy.crawler import CrawlerRunner
 from scrapy.signalmanager import dispatcher
 from scrapy import signals
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Global list to store extracted data
 scraped_data = []
@@ -39,8 +22,7 @@ def collect_data(item, response, spider):
 def run_spider(start_url):
     """Runs Scrapy spider and returns extracted data"""
     global scraped_data
-    scraped_data = []  # Reset data before each crawl
-
+    scraped_data = []  
     domain = start_url.split("//")[1].split("/")[0]
 
     # Create Scrapy runner
@@ -58,9 +40,10 @@ def run_spider(start_url):
     reactor.callWhenRunning(crawl)
     reactor.run()  # Blocks execution until crawling is done
 
-    return scraped_data  # Return extracted data
+    return scraped_data
 
 if __name__ == "__main__":
     start_url = "https://news.ycombinator.com/"
+    #start_url = "https://www.bestbuy.com/site/searchpage.jsp?st=laptop"
     data = run_spider(start_url)
     print("Extracted Data:", data)

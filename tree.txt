@@ -1,0 +1,63 @@
+.
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── artifacts
+│   └── logs
+│       └── running_logs.log
+├── config
+│   └── config.yaml
+├── data
+│   ├── processed
+│   └── raw
+├── deployment
+│   ├── aws_lambda.py
+│   ├── cloud_run.yaml
+│   ├── heroku.ymldocs
+│   │   └── README.md
+│   └── k8s
+├── docker-compose.yml
+├── docs
+│   └── Rufus_API_Docs.md
+├── notebooks
+│   ├── exploration.ipynb
+│   └── web_scraping_tests.ipynb
+├── output.csv
+├── output.json
+├── requirements.txt
+├── scripts
+│   ├── __pycache__
+│   │   └── run_spider.cpython-310.pyc
+│   ├── run_api.py
+│   └── run_spider.py
+├── setup.py
+├── src
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── rufus_api.cpython-310.pyc
+│   │   ├── rufus_crawler.cpython-310.pyc
+│   │   ├── rufus_formatter.cpython-310.pyc
+│   │   └── rufus_nlp.cpython-310.pyc
+│   ├── config.py
+│   ├── logger.py
+│   ├── rufusAgent.egg-info
+│   │   ├── PKG-INFO
+│   │   ├── SOURCES.txt
+│   │   ├── dependency_links.txt
+│   │   └── top_level.txt
+│   ├── rufus_api.py
+│   ├── rufus_client.py
+│   ├── rufus_crawler.py
+│   ├── rufus_formatter.py
+│   └── rufus_nlp.py
+├── template.py
+├── tesla_tax_data.csv
+├── tesla_tax_data.json
+└── tests
+    ├── test_api.py
+    ├── test_crawler.py
+    ├── test_formatter.py
+    └── test_nlp.py
+
+18 directories, 43 files
