@@ -5,16 +5,16 @@ Last Updated: March 2025
 Author: Shreyas Chigurupati
 
 
-Table of Contents
-	1.	Introduction
-	2.	Architecture Overview
-	3.	Installation Guide
-	4.	API Reference
-	5.	Scraper Design
-	6.	Natural Language Processing (NLP) Module
-	7.	Data Storage & Formatting
-	8.	Integration with RAG Pipelines
-	9.	Deployment (Docker & Cloud)
+# Table of Contents
+1. Introduction
+2. Architecture Overview
+3. Installation Guide
+4. API Reference
+5. Scraper Design
+6. Natural Language Processing (NLP) Module
+7. Data Storage & Formatting
+8. Integration with RAG Pipelines
+9. Deployment (Docker & Cloud)
 
 
 ## 1. Introduction
@@ -22,11 +22,11 @@ Table of Contents
 ### 1.1 What is Rufus Scraper?
 
 Rufus Scraper is an AI-powered web scraping framework designed for automated data extraction, intelligent filtering, and seamless integration into Retrieval-Augmented Generation (RAG) pipelines. It provides:
-	•	Efficient web crawling using Scrapy
-	•	Text extraction and cleaning using NLP techniques
-	•	Similarity-based ranking using transformer models
-	•	FastAPI-based REST API for easy integration
-	•	Structured JSON & CSV outputs
+*	Efficient web crawling using Scrapy
+*   Text extraction and cleaning using NLP techniques
+*   Similarity-based ranking using transformer models
+*   FastAPI-based REST API for easy integration
+*   Structured JSON & CSV outputs
 
 ### 1.2 Key Use Cases
 	•	Automated content retrieval for LLMs
