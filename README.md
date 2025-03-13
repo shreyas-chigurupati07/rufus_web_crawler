@@ -16,9 +16,10 @@ Containerized Deployment: Ready to run with Docker.
 ## Installation & setup
 
 1. Clone the repository
-'''bash
+```bash
 git clone https://github.com/shreyas-chigurupati07/rufus_web_crawler.git
 cd rufus_web_crawler
+```
 
 2. Create a Virtual Environment
 
